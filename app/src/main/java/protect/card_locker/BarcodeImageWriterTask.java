@@ -17,6 +17,8 @@ import com.google.zxing.common.BitMatrix;
 import java.lang.ref.WeakReference;
 
 import protect.card_locker.async.CompatCallable;
+import protect.card_locker.models.BarcodeImageWriterResultCallback;
+import protect.card_locker.models.CatimaBarcode;
 
 /**
  * This task will generate a barcode and load it into an ImageView.

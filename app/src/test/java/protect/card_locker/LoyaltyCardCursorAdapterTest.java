@@ -27,6 +27,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
+import protect.card_locker.models.CatimaBarcode;
+import protect.card_locker.models.LoyaltyCard;
+
 @RunWith(RobolectricTestRunner.class)
 public class LoyaltyCardCursorAdapterTest {
     private Activity activity;

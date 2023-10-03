@@ -31,9 +31,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import protect.card_locker.CatimaBarcode;
+import protect.card_locker.models.CatimaBarcode;
 import protect.card_locker.DBHelper;
-import protect.card_locker.Group;
+import protect.card_locker.models.Group;
 import protect.card_locker.TestHelpers;
 
 @RunWith(RobolectricTestRunner.class)

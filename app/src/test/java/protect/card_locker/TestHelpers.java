@@ -12,6 +12,9 @@ import com.google.zxing.BarcodeFormat;
 import java.io.FileNotFoundException;
 import java.math.BigDecimal;
 
+import protect.card_locker.models.CatimaBarcode;
+import protect.card_locker.models.ImageLocationType;
+
 public class TestHelpers {
     private static final String BARCODE_DATA = "428311627547";
     private static final CatimaBarcode BARCODE_TYPE = CatimaBarcode.fromBarcode(BarcodeFormat.UPC_A);

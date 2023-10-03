@@ -56,7 +56,6 @@ import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.color.MaterialColors;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 import com.jaredrummler.android.colorpicker.ColorPickerDialog;
 import com.jaredrummler.android.colorpicker.ColorPickerDialogListener;
@@ -88,6 +87,14 @@ import java.util.concurrent.Callable;
 import protect.card_locker.async.TaskHandler;
 import protect.card_locker.databinding.LayoutChipChoiceBinding;
 import protect.card_locker.databinding.LoyaltyCardEditActivityBinding;
+import protect.card_locker.models.BarcodeImageWriterResultCallback;
+import protect.card_locker.models.BarcodeValues;
+import protect.card_locker.models.CatimaBarcode;
+import protect.card_locker.models.Group;
+import protect.card_locker.models.ImageLocationType;
+import protect.card_locker.models.LetterBitmap;
+import protect.card_locker.models.LoyaltyCard;
+import protect.card_locker.models.SimpleTextWatcher;
 
 public class LoyaltyCardEditActivity extends CatimaAppCompatActivity implements BarcodeImageWriterResultCallback, ColorPickerDialogListener {
     private LoyaltyCardEditActivityBinding binding;

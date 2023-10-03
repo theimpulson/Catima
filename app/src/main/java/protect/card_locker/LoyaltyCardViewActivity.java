@@ -20,7 +20,6 @@ import android.text.method.DigitsKeyListener;
 import android.text.style.ForegroundColorSpan;
 import android.text.util.Linkify;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -42,16 +41,13 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.FileProvider;
 import androidx.core.graphics.BlendModeColorFilterCompat;
 import androidx.core.graphics.BlendModeCompat;
 import androidx.core.graphics.ColorUtils;
-import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
-import androidx.core.widget.TextViewCompat;
 
 import com.google.android.material.color.MaterialColors;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -71,6 +67,12 @@ import java.util.function.Predicate;
 
 import protect.card_locker.async.TaskHandler;
 import protect.card_locker.databinding.LoyaltyCardViewLayoutBinding;
+import protect.card_locker.models.BarcodeImageWriterResultCallback;
+import protect.card_locker.models.CatimaBarcode;
+import protect.card_locker.models.Group;
+import protect.card_locker.models.ImageLocationType;
+import protect.card_locker.models.LoyaltyCard;
+import protect.card_locker.models.SimpleTextWatcher;
 import protect.card_locker.preferences.Settings;
 
 public class LoyaltyCardViewActivity extends CatimaAppCompatActivity implements BarcodeImageWriterResultCallback {

@@ -26,6 +26,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import protect.card_locker.databinding.ManageGroupsActivityBinding;
+import protect.card_locker.models.Group;
+import protect.card_locker.models.SimpleTextWatcher;
 
 public class ManageGroupsActivity extends CatimaAppCompatActivity implements GroupCursorAdapter.GroupAdapterListener {
     private ManageGroupsActivityBinding binding;

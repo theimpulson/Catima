@@ -1,4 +1,4 @@
-package protect.card_locker;
+package protect.card_locker.models;
 
 import android.database.Cursor;
 import android.os.Parcel;
@@ -10,6 +10,9 @@ import java.util.Date;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import protect.card_locker.DBHelper;
+import protect.card_locker.Utils;
 
 public class LoyaltyCard implements Parcelable {
     public final int id;

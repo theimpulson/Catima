@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import protect.card_locker.async.TaskHandler;
 import protect.card_locker.databinding.BarcodeLayoutBinding;
+import protect.card_locker.models.CatimaBarcode;
 
 public class BarcodeSelectorAdapter extends ArrayAdapter<CatimaBarcodeWithValue> {
     private static final String TAG = "Catima";

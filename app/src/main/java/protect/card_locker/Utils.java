@@ -70,6 +70,10 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import protect.card_locker.models.BarcodeValues;
+import protect.card_locker.models.ImageLocationType;
+import protect.card_locker.models.LetterBitmap;
+import protect.card_locker.models.LoyaltyCard;
 import protect.card_locker.preferences.Settings;
 
 public class Utils {

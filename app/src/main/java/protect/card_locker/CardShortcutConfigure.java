@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import protect.card_locker.databinding.SimpleToolbarListActivityBinding;
+import protect.card_locker.models.LoyaltyCard;
 
 /**
  * The configuration screen for creating a shortcut.

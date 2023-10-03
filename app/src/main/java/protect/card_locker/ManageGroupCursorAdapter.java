@@ -8,6 +8,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import protect.card_locker.models.Group;
+import protect.card_locker.models.LoyaltyCard;
+
 public class ManageGroupCursorAdapter extends LoyaltyCardCursorAdapter {
     private HashMap<Integer, Integer> mIndexCardMap;
     private HashMap<Integer, Boolean> mInGroupOverlay;

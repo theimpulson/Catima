@@ -1,5 +1,7 @@
 package protect.card_locker;
 
+import protect.card_locker.models.CatimaBarcode;
+
 public class CatimaBarcodeWithValue {
     private final CatimaBarcode mCatimaBarcode;
     private final String mValue;

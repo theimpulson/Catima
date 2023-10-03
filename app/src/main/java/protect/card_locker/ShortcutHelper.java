@@ -20,6 +20,9 @@ import androidx.core.content.pm.ShortcutManagerCompat;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.graphics.drawable.IconCompat;
 
+import protect.card_locker.models.ImageLocationType;
+import protect.card_locker.models.LoyaltyCard;
+
 class ShortcutHelper {
     // Android documentation says that no more than 5 shortcuts
     // are supported. However, that may be too many, as not all

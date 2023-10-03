@@ -1,4 +1,4 @@
-package protect.card_locker;
+package protect.card_locker.models;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -14,6 +14,8 @@ import android.util.Log;
 
 import androidx.core.graphics.PaintCompat;
 
+import protect.card_locker.R;
+
 /**
  * Original from https://github.com/andOTP/andOTP/blob/master/app/src/main/java/org/shadowice/flocke/andotp/Utilities/LetterBitmap.java
  * which was originally from http://stackoverflow.com/questions/23122088/colored-boxed-with-letters-a-la-gmail
@@ -21,7 +23,7 @@ import androidx.core.graphics.PaintCompat;
  * alphabet or digit, if there is no letter or digit available, a default image
  * is shown instead.
  */
-class LetterBitmap {
+public class LetterBitmap {
 
     /**
      * The number of available tile colors

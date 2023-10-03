@@ -8,14 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import protect.card_locker.databinding.GroupLayoutBinding;
-import protect.card_locker.preferences.Settings;
+import protect.card_locker.models.Group;
 
 public class GroupCursorAdapter extends BaseCursorAdapter<GroupCursorAdapter.GroupListItemViewHolder> {
     public final Context mContext;

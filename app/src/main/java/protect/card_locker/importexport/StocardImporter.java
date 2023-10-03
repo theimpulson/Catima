@@ -34,11 +34,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import protect.card_locker.CatimaBarcode;
+import protect.card_locker.models.CatimaBarcode;
 import protect.card_locker.DBHelper;
-import protect.card_locker.FormatException;
-import protect.card_locker.ImageLocationType;
-import protect.card_locker.LoyaltyCard;
+import protect.card_locker.models.FormatException;
+import protect.card_locker.models.ImageLocationType;
+import protect.card_locker.models.LoyaltyCard;
 import protect.card_locker.R;
 import protect.card_locker.Utils;
 import protect.card_locker.ZipUtils;

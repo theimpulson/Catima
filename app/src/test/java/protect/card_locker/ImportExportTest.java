@@ -44,6 +44,10 @@ import protect.card_locker.importexport.ImportExportResult;
 import protect.card_locker.importexport.ImportExportResultType;
 import protect.card_locker.importexport.MultiFormatExporter;
 import protect.card_locker.importexport.MultiFormatImporter;
+import protect.card_locker.models.CatimaBarcode;
+import protect.card_locker.models.Group;
+import protect.card_locker.models.ImageLocationType;
+import protect.card_locker.models.LoyaltyCard;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;

@@ -30,6 +30,8 @@ import androidx.core.graphics.BlendModeCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import protect.card_locker.databinding.LoyaltyCardLayoutBinding;
+import protect.card_locker.models.ImageLocationType;
+import protect.card_locker.models.LoyaltyCard;
 
 public class LoyaltyCardCursorAdapter extends BaseCursorAdapter<LoyaltyCardCursorAdapter.LoyaltyCardListItemViewHolder> {
     private int mCurrentSelectedIndex = -1;

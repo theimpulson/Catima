@@ -9,7 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 
-import protect.card_locker.FormatException;
+import protect.card_locker.models.FormatException;
 
 /**
  * Interface for a class which can import the contents of a stream

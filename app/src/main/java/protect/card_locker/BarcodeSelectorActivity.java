@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import androidx.appcompat.widget.Toolbar;
 
 import protect.card_locker.databinding.BarcodeSelectorActivityBinding;
+import protect.card_locker.models.CatimaBarcode;
+import protect.card_locker.models.SimpleTextWatcher;
 
 /**
  * This activity is callable and will allow a user to enter

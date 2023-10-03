@@ -2,7 +2,7 @@ package protect.card_locker.importexport;
 
 import org.apache.commons.csv.CSVRecord;
 
-import protect.card_locker.FormatException;
+import protect.card_locker.models.FormatException;
 
 public class CSVHelpers {
     /**

@@ -47,6 +47,8 @@ import java.util.List;
 
 import protect.card_locker.databinding.CustomBarcodeScannerBinding;
 import protect.card_locker.databinding.ScanActivityBinding;
+import protect.card_locker.models.BarcodeValues;
+import protect.card_locker.models.SimpleTextWatcher;
 
 /**
  * Custom Scannner Activity extending from Activity to display a custom layout form scanner view.

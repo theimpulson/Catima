@@ -20,6 +20,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import protect.card_locker.models.CatimaBarcode;
+import protect.card_locker.models.Group;
+import protect.card_locker.models.ImageLocationType;
+import protect.card_locker.models.LoyaltyCard;
+
 public class DBHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "Catima.db";
     public static final int ORIGINAL_DATABASE_VERSION = 1;

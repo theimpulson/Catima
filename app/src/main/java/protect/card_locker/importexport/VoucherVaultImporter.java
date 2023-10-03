@@ -27,10 +27,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 
-import protect.card_locker.CatimaBarcode;
+import protect.card_locker.models.CatimaBarcode;
 import protect.card_locker.DBHelper;
-import protect.card_locker.FormatException;
-import protect.card_locker.LoyaltyCard;
+import protect.card_locker.models.FormatException;
+import protect.card_locker.models.LoyaltyCard;
 import protect.card_locker.Utils;
 
 /**

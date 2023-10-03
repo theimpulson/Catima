@@ -22,9 +22,9 @@ import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 
 import protect.card_locker.DBHelper;
-import protect.card_locker.Group;
-import protect.card_locker.ImageLocationType;
-import protect.card_locker.LoyaltyCard;
+import protect.card_locker.models.Group;
+import protect.card_locker.models.ImageLocationType;
+import protect.card_locker.models.LoyaltyCard;
 import protect.card_locker.Utils;
 
 /**

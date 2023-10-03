@@ -22,6 +22,9 @@ import java.util.function.Consumer;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
+import protect.card_locker.models.ImageLocationType;
+import protect.card_locker.models.LoyaltyCard;
+
 @RequiresApi(Build.VERSION_CODES.R)
 public class CardsOnPowerScreenService extends ControlsProviderService {
 

@@ -15,6 +15,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import protect.card_locker.models.CatimaBarcode;
+import protect.card_locker.models.LoyaltyCard;
+
 public class ImportURIHelper {
     private static final String STORE = DBHelper.LoyaltyCardDbIds.STORE;
     private static final String NOTE = DBHelper.LoyaltyCardDbIds.NOTE;

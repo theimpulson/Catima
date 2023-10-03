@@ -45,6 +45,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 import protect.card_locker.databinding.ContentMainBinding;
 import protect.card_locker.databinding.MainActivityBinding;
 import protect.card_locker.databinding.SortingOptionBinding;
+import protect.card_locker.models.BarcodeValues;
+import protect.card_locker.models.Group;
+import protect.card_locker.models.LoyaltyCard;
 import protect.card_locker.preferences.SettingsActivity;
 
 public class MainActivity extends CatimaAppCompatActivity implements LoyaltyCardCursorAdapter.CardAdapterListener {

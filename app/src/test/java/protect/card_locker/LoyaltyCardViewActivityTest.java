@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
@@ -26,7 +25,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.google.android.material.bottomappbar.BottomAppBar;
@@ -61,8 +59,6 @@ import java.util.Date;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.widget.TextViewCompat;
-import androidx.preference.PreferenceManager;
 
 import static android.os.Looper.getMainLooper;
 import static org.junit.Assert.assertEquals;
@@ -72,6 +68,9 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.robolectric.Shadows.shadowOf;
+
+import protect.card_locker.models.CatimaBarcode;
+import protect.card_locker.models.LoyaltyCard;
 
 @RunWith(RobolectricTestRunner.class)
 public class LoyaltyCardViewActivityTest {

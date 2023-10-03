@@ -1,8 +1,10 @@
-package protect.card_locker;
+package protect.card_locker.models;
 
 import android.database.Cursor;
 
 import androidx.annotation.Nullable;
+
+import protect.card_locker.DBHelper;
 
 public class Group {
     public final String _id;

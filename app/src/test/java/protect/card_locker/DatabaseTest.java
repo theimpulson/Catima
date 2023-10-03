@@ -13,7 +13,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
-import org.robolectric.annotation.Config;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -25,6 +24,10 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+
+import protect.card_locker.models.CatimaBarcode;
+import protect.card_locker.models.Group;
+import protect.card_locker.models.LoyaltyCard;
 
 @RunWith(RobolectricTestRunner.class)
 public class DatabaseTest {

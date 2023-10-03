@@ -1,4 +1,4 @@
-package protect.card_locker;
+package protect.card_locker.models;
 
 import android.text.Editable;
 import android.text.TextWatcher;
