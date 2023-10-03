@@ -1,4 +1,4 @@
-package protect.card_locker;
+package protect.card_locker.about;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import protect.card_locker.R;
+import protect.card_locker.about.models.ThirdPartyInfo;
 import protect.card_locker.utils.CommonUtils;
 
 public class AboutContent {

@@ -1,4 +1,4 @@
-package protect.card_locker;
+package protect.card_locker.about.models;
 
 public class ThirdPartyInfo {
     private final String mName;

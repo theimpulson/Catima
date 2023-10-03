@@ -1,17 +1,24 @@
-package protect.card_locker;
+package protect.card_locker.about;
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Spanned;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.StringRes;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
-
+import protect.card_locker.CatimaAppCompatActivity;
+import protect.card_locker.R;
 import protect.card_locker.databinding.AboutActivityBinding;
 import protect.card_locker.utils.CommonUtils;
 
@@ -137,7 +144,22 @@ public class AboutActivity extends CatimaAppCompatActivity {
     private void openExternalBrowser(View view) {
         Object tag = view.getTag();
         if (tag instanceof String && ((String) tag).startsWith("https://")) {
-            (new OpenWebLinkHandler()).openBrowser(this, (String) tag);
+            openBrowser(this, (String) tag);
+        }
+    }
+
+    private void openBrowser(AppCompatActivity activity, String url) {
+        if (url == null) {
+            return;
+        }
+
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        try {
+            activity.startActivity(intent);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(activity, R.string.failedToOpenUrl, Toast.LENGTH_LONG).show();
+            Log.e(TAG, "No activity found to handle intent", e);
         }
     }
 }
