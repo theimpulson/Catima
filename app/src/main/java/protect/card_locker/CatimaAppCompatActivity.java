@@ -12,17 +12,19 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.WindowInsetsControllerCompat;
 
+import protect.card_locker.utils.CommonUtils;
+
 public class CatimaAppCompatActivity extends AppCompatActivity {
     @Override
     protected void attachBaseContext(Context base) {
         // Apply chosen language
-        super.attachBaseContext(Utils.updateBaseContextLocale(base));
+        super.attachBaseContext(CommonUtils.updateBaseContextLocale(base));
     }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Utils.patchColors(this);
+        CommonUtils.patchColors(this);
     }
 
     @Override
@@ -30,7 +32,7 @@ public class CatimaAppCompatActivity extends AppCompatActivity {
         super.onPostCreate(savedInstanceState);
         // material 3 designer does not consider status bar colors
         // XXX changing this in onCreate causes issues with the splash screen activity, so doing this here
-        boolean darkMode = Utils.isDarkModeEnabled(this);
+        boolean darkMode = CommonUtils.isDarkModeEnabled(this);
         if (Build.VERSION.SDK_INT >= 23) {
             View decorView = getWindow().getDecorView();
             WindowInsetsControllerCompat wic = new WindowInsetsControllerCompat(getWindow(), decorView);
@@ -41,7 +43,7 @@ public class CatimaAppCompatActivity extends AppCompatActivity {
             getWindow().setStatusBarColor(darkMode ? Color.TRANSPARENT : Color.argb(127, 0, 0, 0));
         }
         // XXX android 9 and below has a nasty rendering bug if the theme was patched earlier
-        Utils.postPatchColors(this);
+        CommonUtils.postPatchColors(this);
     }
 
     protected void enableToolbarBackButton() {

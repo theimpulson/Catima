@@ -1,4 +1,4 @@
-package protect.card_locker;
+package protect.card_locker.utils;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -16,6 +16,7 @@ import com.google.zxing.common.BitMatrix;
 
 import java.lang.ref.WeakReference;
 
+import protect.card_locker.R;
 import protect.card_locker.async.CompatCallable;
 import protect.card_locker.models.BarcodeImageWriterResultCallback;
 import protect.card_locker.models.CatimaBarcode;
@@ -48,7 +49,7 @@ public class BarcodeImageWriterTask implements CompatCallable<Bitmap> {
     private final boolean showFallback;
     private final BarcodeImageWriterResultCallback callback;
 
-    BarcodeImageWriterTask(
+    public BarcodeImageWriterTask(
             Context context, ImageView imageView, String cardIdString,
             CatimaBarcode barcodeFormat, TextView textView,
             boolean showFallback, BarcodeImageWriterResultCallback callback, boolean roundCornerPadding

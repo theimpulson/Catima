@@ -1,4 +1,4 @@
-package protect.card_locker;
+package protect.card_locker.utils;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

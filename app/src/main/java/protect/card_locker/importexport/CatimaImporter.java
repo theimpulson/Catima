@@ -35,8 +35,8 @@ import protect.card_locker.models.FormatException;
 import protect.card_locker.models.Group;
 import protect.card_locker.models.ImageLocationType;
 import protect.card_locker.models.LoyaltyCard;
-import protect.card_locker.Utils;
-import protect.card_locker.ZipUtils;
+import protect.card_locker.utils.CommonUtils;
+import protect.card_locker.utils.ZipUtils;
 
 /**
  * Class for importing a database from CSV (Comma Separate Values)
@@ -78,10 +78,10 @@ public class CatimaImporter implements Importer {
             if (fileName.equals("catima.csv")) {
                 importedData = importCSV(zipInputStream1);
             } else if (fileName.endsWith(".png")) {
-                if (!fileName.matches(Utils.CARD_IMAGE_FILENAME_REGEX)) {
+                if (!fileName.matches(CommonUtils.CARD_IMAGE_FILENAME_REGEX)) {
                     throw new FormatException("Unexpected PNG file in import: " + fileName);
                 }
-                imageChecksums.put(fileName, Utils.checksum(zipInputStream1));
+                imageChecksums.put(fileName, CommonUtils.checksum(zipInputStream1));
             } else {
                 throw new FormatException("Unexpected file in import: " + fileName);
             }
@@ -110,8 +110,8 @@ public class CatimaImporter implements Importer {
             while ((localFileHeader = zipInputStream2.getNextEntry()) != null) {
                 String fileName = Uri.parse(localFileHeader.getFileName()).getLastPathSegment();
                 if (fileName.endsWith(".png")) {
-                    String newFileName = Utils.getRenamedCardImageFileName(fileName, idMap);
-                    Utils.saveCardImage(context, ZipUtils.readImage(zipInputStream2), newFileName);
+                    String newFileName = CommonUtils.getRenamedCardImageFileName(fileName, idMap);
+                    CommonUtils.saveCardImage(context, ZipUtils.readImage(zipInputStream2), newFileName);
                 }
             }
 
@@ -156,14 +156,14 @@ public class CatimaImporter implements Importer {
             return false;
         }
         for (ImageLocationType imageLocationType : ImageLocationType.values()) {
-            String name = Utils.getCardImageFileName(existing.id, imageLocationType);
+            String name = CommonUtils.getCardImageFileName(existing.id, imageLocationType);
             boolean exists = existingImages.contains(name);
             if (exists != imageChecksums.containsKey(name)) {
                 return false;
             }
             if (exists) {
-                File file = Utils.retrieveCardImageAsFile(context, name);
-                if (!imageChecksums.get(name).equals(Utils.checksum(new FileInputStream(file)))) {
+                File file = CommonUtils.retrieveCardImageAsFile(context, name);
+                if (!imageChecksums.get(name).equals(CommonUtils.checksum(new FileInputStream(file)))) {
                     return false;
                 }
             }

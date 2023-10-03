@@ -74,6 +74,8 @@ import protect.card_locker.models.ImageLocationType;
 import protect.card_locker.models.LoyaltyCard;
 import protect.card_locker.models.SimpleTextWatcher;
 import protect.card_locker.preferences.Settings;
+import protect.card_locker.utils.BarcodeImageWriterTask;
+import protect.card_locker.utils.CommonUtils;
 
 public class LoyaltyCardViewActivity extends CatimaAppCompatActivity implements BarcodeImageWriterResultCallback {
     private LoyaltyCardViewLayoutBinding binding;
@@ -132,10 +134,10 @@ public class LoyaltyCardViewActivity extends CatimaAppCompatActivity implements 
 
         switch (wantedImageType) {
             case IMAGE_FRONT:
-                file = Utils.retrieveCardImageAsFile(this, loyaltyCardId, ImageLocationType.front);
+                file = CommonUtils.retrieveCardImageAsFile(this, loyaltyCardId, ImageLocationType.front);
                 break;
             case IMAGE_BACK:
-                file = Utils.retrieveCardImageAsFile(this, loyaltyCardId, ImageLocationType.back);
+                file = CommonUtils.retrieveCardImageAsFile(this, loyaltyCardId, ImageLocationType.back);
                 break;
             case BARCODE:
                 Toast.makeText(this, R.string.barcodeLongPressMessage, Toast.LENGTH_SHORT).show();
@@ -383,12 +385,12 @@ public class LoyaltyCardViewActivity extends CatimaAppCompatActivity implements 
 
         if (hasBalance(loyaltyCard)) {
             padSpannableString(infoText);
-            infoText.append(getString(R.string.balanceSentence, Utils.formatBalance(this, loyaltyCard.balance, loyaltyCard.balanceType)));
+            infoText.append(getString(R.string.balanceSentence, CommonUtils.formatBalance(this, loyaltyCard.balance, loyaltyCard.balanceType)));
         }
 
-        appendDateInfo(infoText, loyaltyCard.validFrom, (Utils::isNotYetValid), R.string.validFromSentence, R.string.validFromSentence);
+        appendDateInfo(infoText, loyaltyCard.validFrom, (CommonUtils::isNotYetValid), R.string.validFromSentence, R.string.validFromSentence);
 
-        appendDateInfo(infoText, loyaltyCard.expiry, (Utils::hasExpired), R.string.expiryStateSentenceExpired, R.string.expiryStateSentence);
+        appendDateInfo(infoText, loyaltyCard.expiry, (CommonUtils::hasExpired), R.string.expiryStateSentenceExpired, R.string.expiryStateSentence);
 
         infoTextview.setText(infoText);
 
@@ -429,11 +431,11 @@ public class LoyaltyCardViewActivity extends CatimaAppCompatActivity implements 
         layout.setOrientation(LinearLayout.VERTICAL);
 
         TextView currentTextview = new TextView(this);
-        currentTextview.setText(getString(R.string.currentBalanceSentence, Utils.formatBalance(this, loyaltyCard.balance, loyaltyCard.balanceType)));
+        currentTextview.setText(getString(R.string.currentBalanceSentence, CommonUtils.formatBalance(this, loyaltyCard.balance, loyaltyCard.balanceType)));
         layout.addView(currentTextview);
 
         TextView updateTextView = new TextView(this);
-        updateTextView.setText(getString(R.string.newBalanceSentence, Utils.formatBalance(this, loyaltyCard.balance, loyaltyCard.balanceType)));
+        updateTextView.setText(getString(R.string.newBalanceSentence, CommonUtils.formatBalance(this, loyaltyCard.balance, loyaltyCard.balanceType)));
         layout.addView(updateTextView);
 
         final TextInputEditText input = new TextInputEditText(this);
@@ -449,13 +451,13 @@ public class LoyaltyCardViewActivity extends CatimaAppCompatActivity implements 
                     newBalance = calculateNewBalance(loyaltyCard.balance, loyaltyCard.balanceType, s.toString());
                 } catch (ParseException e) {
                     input.setTag(null);
-                    updateTextView.setText(getString(R.string.newBalanceSentence, Utils.formatBalance(dialogContext, loyaltyCard.balance, loyaltyCard.balanceType)));
+                    updateTextView.setText(getString(R.string.newBalanceSentence, CommonUtils.formatBalance(dialogContext, loyaltyCard.balance, loyaltyCard.balanceType)));
                     return;
                 }
 
                 // Save new balance into this element
                 input.setTag(newBalance);
-                updateTextView.setText(getString(R.string.newBalanceSentence, Utils.formatBalance(dialogContext, newBalance, loyaltyCard.balanceType)));
+                updateTextView.setText(getString(R.string.newBalanceSentence, CommonUtils.formatBalance(dialogContext, newBalance, loyaltyCard.balanceType)));
             }
         });
         layout.addView(input);
@@ -483,7 +485,7 @@ public class LoyaltyCardViewActivity extends CatimaAppCompatActivity implements 
     }
 
     private BigDecimal calculateNewBalance(BigDecimal currentBalance, Currency currency, String unparsedSubtraction) throws ParseException {
-        BigDecimal subtraction = Utils.parseBalance(unparsedSubtraction, currency);
+        BigDecimal subtraction = CommonUtils.parseBalance(unparsedSubtraction, currency);
         return currentBalance.subtract(subtraction).max(new BigDecimal(0));
     }
 
@@ -630,25 +632,25 @@ public class LoyaltyCardViewActivity extends CatimaAppCompatActivity implements 
             dialog.show();
         });
 
-        int backgroundHeaderColor = Utils.getHeaderColor(this, loyaltyCard);
+        int backgroundHeaderColor = CommonUtils.getHeaderColor(this, loyaltyCard);
 
         // Also apply colours to UI elements
         int darkenedColor = ColorUtils.blendARGB(backgroundHeaderColor, Color.BLACK, 0.1f);
         binding.barcodeScaler.setProgressTintList(ColorStateList.valueOf(darkenedColor));
         binding.barcodeScaler.setThumbTintList(ColorStateList.valueOf(darkenedColor));
         binding.bottomAppBar.setBackgroundColor(darkenedColor);
-        int complementaryColor = Utils.getComplementaryColor(darkenedColor);
+        int complementaryColor = CommonUtils.getComplementaryColor(darkenedColor);
         binding.fabEdit.setBackgroundTintList(ColorStateList.valueOf(complementaryColor));
         Drawable editButtonIcon = binding.fabEdit.getDrawable();
         editButtonIcon.mutate();
-        editButtonIcon.setTint(Utils.needsDarkForeground(complementaryColor) ? Color.BLACK : Color.WHITE);
+        editButtonIcon.setTint(CommonUtils.needsDarkForeground(complementaryColor) ? Color.BLACK : Color.WHITE);
         binding.fabEdit.setImageDrawable(editButtonIcon);
 
-        Bitmap icon = Utils.retrieveCardImage(this, loyaltyCard.id, ImageLocationType.icon);
-        Utils.setIconOrTextWithBackground(this, loyaltyCard, icon, binding.iconImage, binding.iconText);
+        Bitmap icon = CommonUtils.retrieveCardImage(this, loyaltyCard.id, ImageLocationType.icon);
+        CommonUtils.setIconOrTextWithBackground(this, loyaltyCard, icon, binding.iconImage, binding.iconText);
 
         // If the background is very bright, we should use dark icons
-        backgroundNeedsDarkIcons = Utils.needsDarkForeground(backgroundHeaderColor);
+        backgroundNeedsDarkIcons = CommonUtils.needsDarkForeground(backgroundHeaderColor);
 
         fixBottomAppBarImageButtonColor(binding.bottomAppBarInfoButton);
         fixBottomAppBarImageButtonColor(binding.bottomAppBarPreviousButton);
@@ -673,12 +675,12 @@ public class LoyaltyCardViewActivity extends CatimaAppCompatActivity implements 
             imageTypes.add(ImageType.BARCODE);
         }
 
-        frontImageBitmap = Utils.retrieveCardImage(this, loyaltyCard.id, ImageLocationType.front);
+        frontImageBitmap = CommonUtils.retrieveCardImage(this, loyaltyCard.id, ImageLocationType.front);
         if (frontImageBitmap != null) {
             imageTypes.add(ImageType.IMAGE_FRONT);
         }
 
-        backImageBitmap = Utils.retrieveCardImage(this, loyaltyCard.id, ImageLocationType.back);
+        backImageBitmap = CommonUtils.retrieveCardImage(this, loyaltyCard.id, ImageLocationType.back);
         if (backImageBitmap != null) {
             imageTypes.add(ImageType.IMAGE_BACK);
         }

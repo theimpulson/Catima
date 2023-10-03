@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import protect.card_locker.DBHelper;
-import protect.card_locker.Utils;
+import protect.card_locker.utils.CommonUtils;
 
 public class LoyaltyCard implements Parcelable {
     public final int id;
@@ -152,15 +152,15 @@ public class LoyaltyCard implements Parcelable {
         return a.id == b.id && // non-nullable int
                 a.store.equals(b.store) && // non-nullable String
                 a.note.equals(b.note) && // non-nullable String
-                Utils.equals(a.validFrom, b.validFrom) && // nullable Date
-                Utils.equals(a.expiry, b.expiry) && // nullable Date
+                CommonUtils.equals(a.validFrom, b.validFrom) && // nullable Date
+                CommonUtils.equals(a.expiry, b.expiry) && // nullable Date
                 a.balance.equals(b.balance) && // non-nullable BigDecimal
-                Utils.equals(a.balanceType, b.balanceType) && // nullable Currency
+                CommonUtils.equals(a.balanceType, b.balanceType) && // nullable Currency
                 a.cardId.equals(b.cardId) && // non-nullable String
-                Utils.equals(a.barcodeId, b.barcodeId) && // nullable String
-                Utils.equals(a.barcodeType == null ? null : a.barcodeType.format(),
+                CommonUtils.equals(a.barcodeId, b.barcodeId) && // nullable String
+                CommonUtils.equals(a.barcodeType == null ? null : a.barcodeType.format(),
                         b.barcodeType == null ? null : b.barcodeType.format()) && // nullable CatimaBarcode with no overridden .equals(), so we need to check .format()
-                Utils.equals(a.headerColor, b.headerColor) && // nullable Integer
+                CommonUtils.equals(a.headerColor, b.headerColor) && // nullable Integer
                 a.starStatus == b.starStatus && // non-nullable int
                 a.archiveStatus == b.archiveStatus; // non-nullable int
     }

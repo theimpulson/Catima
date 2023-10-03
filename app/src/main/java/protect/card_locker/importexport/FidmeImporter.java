@@ -26,7 +26,7 @@ import protect.card_locker.models.CatimaBarcode;
 import protect.card_locker.DBHelper;
 import protect.card_locker.models.FormatException;
 import protect.card_locker.models.LoyaltyCard;
-import protect.card_locker.Utils;
+import protect.card_locker.utils.CommonUtils;
 
 /**
  * Class for importing a database from CSV (Comma Separate Values)
@@ -144,12 +144,12 @@ public class FidmeImporter implements Importer {
         // No favourite data or colour in the export either
         int starStatus = 0;
         int archiveStatus = 0;
-        int headerColor = Utils.getRandomHeaderColor(context);
+        int headerColor = CommonUtils.getRandomHeaderColor(context);
 
         // TODO: Front and back image
 
         // use -1 for the ID, it will be ignored when inserting the card into the DB
-        return new LoyaltyCard(-1, store, note, null, null, BigDecimal.valueOf(0), null, cardId, null, barcodeType, headerColor, starStatus, Utils.getUnixTime(), DBHelper.DEFAULT_ZOOM_LEVEL, archiveStatus);
+        return new LoyaltyCard(-1, store, note, null, null, BigDecimal.valueOf(0), null, cardId, null, barcodeType, headerColor, starStatus, CommonUtils.getUnixTime(), DBHelper.DEFAULT_ZOOM_LEVEL, archiveStatus);
     }
 
     public void saveAndDeduplicate(SQLiteDatabase database, final ImportedData data) {

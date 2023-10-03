@@ -22,6 +22,7 @@ import androidx.core.graphics.drawable.IconCompat;
 
 import protect.card_locker.models.ImageLocationType;
 import protect.card_locker.models.LoyaltyCard;
+import protect.card_locker.utils.CommonUtils;
 
 class ShortcutHelper {
     // Android documentation says that no more than 5 shortcuts
@@ -130,7 +131,7 @@ class ShortcutHelper {
         Bitmap ret = Bitmap.createBitmap(ADAPTIVE_BITMAP_SIZE, ADAPTIVE_BITMAP_SIZE, Bitmap.Config.ARGB_8888);
         Canvas output = new Canvas(ret);
         output.drawColor(ColorUtils.compositeColors(PADDING_COLOR_OVERLAY, paddingColor));
-        Bitmap resized = Utils.resizeBitmap(in, ADAPTIVE_BITMAP_IMAGE_SIZE);
+        Bitmap resized = CommonUtils.resizeBitmap(in, ADAPTIVE_BITMAP_IMAGE_SIZE);
         output.drawBitmap(resized, (ADAPTIVE_BITMAP_SIZE - resized.getWidth()) / 2f, (ADAPTIVE_BITMAP_SIZE - resized.getHeight()) / 2f, null);
         return ret;
     }
@@ -146,11 +147,11 @@ class ShortcutHelper {
         bundle.putBoolean("view", true);
         intent.putExtras(bundle);
 
-        Bitmap iconBitmap = Utils.retrieveCardImage(context, loyaltyCard.id, ImageLocationType.icon);
+        Bitmap iconBitmap = CommonUtils.retrieveCardImage(context, loyaltyCard.id, ImageLocationType.icon);
         if (iconBitmap == null) {
-            iconBitmap = Utils.generateIcon(context, loyaltyCard, true).getLetterTile();
+            iconBitmap = CommonUtils.generateIcon(context, loyaltyCard, true).getLetterTile();
         } else {
-            iconBitmap = createAdaptiveBitmap(iconBitmap, Utils.getHeaderColor(context, loyaltyCard));
+            iconBitmap = createAdaptiveBitmap(iconBitmap, CommonUtils.getHeaderColor(context, loyaltyCard));
         }
 
         IconCompat icon = IconCompat.createWithAdaptiveBitmap(iconBitmap);

@@ -40,8 +40,8 @@ import protect.card_locker.models.FormatException;
 import protect.card_locker.models.ImageLocationType;
 import protect.card_locker.models.LoyaltyCard;
 import protect.card_locker.R;
-import protect.card_locker.Utils;
-import protect.card_locker.ZipUtils;
+import protect.card_locker.utils.CommonUtils;
+import protect.card_locker.utils.ZipUtils;
 
 /**
  * Class for importing a database from CSV (Comma Separate Values)
@@ -348,12 +348,12 @@ public class StocardImporter implements Importer {
                 }
             }
 
-            int headerColor = Utils.getRandomHeaderColor(context);
+            int headerColor = CommonUtils.getRandomHeaderColor(context);
             if (provider != null && provider.logo != null) {
-                headerColor = Utils.getHeaderColorFromImage(provider.logo, headerColor);
+                headerColor = CommonUtils.getHeaderColorFromImage(provider.logo, headerColor);
             }
 
-            long lastUsed = record.lastUsed != null ? record.lastUsed : Utils.getUnixTime();
+            long lastUsed = record.lastUsed != null ? record.lastUsed : CommonUtils.getUnixTime();
 
             LoyaltyCard card = new LoyaltyCard(tempID, store, note, null, null, BigDecimal.valueOf(0), null, record.cardId, null, barcodeType, headerColor, 0, lastUsed, DBHelper.DEFAULT_ZOOM_LEVEL, 0);
             importedData.cards.add(card);
@@ -385,7 +385,7 @@ public class StocardImporter implements Importer {
             long id = DBHelper.insertLoyaltyCard(database, card.store, card.note, card.validFrom, card.expiry, card.balance, card.balanceType,
                     card.cardId, card.barcodeId, card.barcodeType, card.headerColor, card.starStatus, card.lastUsed, card.archiveStatus);
             for (Map.Entry<ImageLocationType, Bitmap> entry : data.images.get(card.id).entrySet()) {
-                Utils.saveCardImage(context, entry.getValue(), (int) id, entry.getKey());
+                CommonUtils.saveCardImage(context, entry.getValue(), (int) id, entry.getKey());
             }
         }
     }

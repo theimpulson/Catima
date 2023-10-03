@@ -1,4 +1,4 @@
-package protect.card_locker;
+package protect.card_locker.utils;
 
 import android.Manifest;
 import android.app.Activity;
@@ -7,6 +7,8 @@ import android.os.Build;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
+import protect.card_locker.CatimaAppCompatActivity;
 
 public class PermissionUtils {
     /**

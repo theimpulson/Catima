@@ -10,7 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
-import protect.card_locker.Utils;
+import protect.card_locker.utils.CommonUtils;
 
 public class MultiFormatImporter {
     private static final String TAG = "Catima";
@@ -49,7 +49,7 @@ public class MultiFormatImporter {
         if (importer != null) {
             File inputFile;
             try {
-                inputFile = Utils.copyToTempFile(context, input, TEMP_ZIP_NAME);
+                inputFile = CommonUtils.copyToTempFile(context, input, TEMP_ZIP_NAME);
                 database.beginTransaction();
                 try {
                     importer.importData(context, database, inputFile, password);

@@ -49,6 +49,7 @@ import protect.card_locker.models.BarcodeValues;
 import protect.card_locker.models.Group;
 import protect.card_locker.models.LoyaltyCard;
 import protect.card_locker.preferences.SettingsActivity;
+import protect.card_locker.utils.CommonUtils;
 
 public class MainActivity extends CatimaAppCompatActivity implements LoyaltyCardCursorAdapter.CardAdapterListener {
     private MainActivityBinding binding;
@@ -321,7 +322,7 @@ public class MainActivity extends CatimaAppCompatActivity implements LoyaltyCard
             }
 
             Intent intent = result.getData();
-            BarcodeValues barcodeValues = Utils.parseSetBarcodeActivityResult(Utils.BARCODE_SCAN, result.getResultCode(), intent, this);
+            BarcodeValues barcodeValues = CommonUtils.parseSetBarcodeActivityResult(CommonUtils.BARCODE_SCAN, result.getResultCode(), intent, this);
 
             Bundle inputBundle = intent.getExtras();
             String group = inputBundle != null ? inputBundle.getString(LoyaltyCardEditActivity.BUNDLE_ADDGROUP) : null;
@@ -518,7 +519,7 @@ public class MainActivity extends CatimaAppCompatActivity implements LoyaltyCard
             }
 
             try {
-                bitmap = Utils.retrieveImageFromUri(this, data);
+                bitmap = CommonUtils.retrieveImageFromUri(this, data);
             } catch (IOException e) {
                 Log.e(TAG, "Error getting data from image file");
                 e.printStackTrace();
@@ -527,7 +528,7 @@ public class MainActivity extends CatimaAppCompatActivity implements LoyaltyCard
                 return;
             }
 
-            barcodeValues = Utils.getBarcodeFromBitmap(bitmap);
+            barcodeValues = CommonUtils.getBarcodeFromBitmap(bitmap);
 
             if (barcodeValues.isEmpty()) {
                 Log.i(TAG, "No barcode found in image file");

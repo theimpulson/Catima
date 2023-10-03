@@ -25,7 +25,7 @@ import protect.card_locker.DBHelper;
 import protect.card_locker.models.Group;
 import protect.card_locker.models.ImageLocationType;
 import protect.card_locker.models.LoyaltyCard;
-import protect.card_locker.Utils;
+import protect.card_locker.utils.CommonUtils;
 
 /**
  * Class for exporting the database into CSV (Comma Separate Values)
@@ -69,11 +69,11 @@ public class CatimaExporter implements Exporter {
             // For each image
             for (ImageLocationType imageLocationType : ImageLocationType.values()) {
                 // If it exists, add to the .zip file
-                Bitmap image = Utils.retrieveCardImage(context, card.id, imageLocationType);
+                Bitmap image = CommonUtils.retrieveCardImage(context, card.id, imageLocationType);
                 if (image != null) {
-                    ZipParameters imageZipParameters = createZipParameters(Utils.getCardImageFileName(card.id, imageLocationType), password);
+                    ZipParameters imageZipParameters = createZipParameters(CommonUtils.getCardImageFileName(card.id, imageLocationType), password);
                     zipOutputStream.putNextEntry(imageZipParameters);
-                    InputStream imageInputStream = new ByteArrayInputStream(Utils.bitmapToByteArray(image));
+                    InputStream imageInputStream = new ByteArrayInputStream(CommonUtils.bitmapToByteArray(image));
                     while ((readLen = imageInputStream.read(readBuffer)) != -1) {
                         zipOutputStream.write(readBuffer, 0, readLen);
                     }

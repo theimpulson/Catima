@@ -17,6 +17,7 @@ import java.util.List;
 
 import protect.card_locker.models.CatimaBarcode;
 import protect.card_locker.models.LoyaltyCard;
+import protect.card_locker.utils.CommonUtils;
 
 public class ImportURIHelper {
     private static final String STORE = DBHelper.LoyaltyCardDbIds.STORE;
@@ -128,7 +129,7 @@ public class ImportURIHelper {
                 headerColor = Integer.parseInt(unparsedHeaderColor);
             }
 
-            return new LoyaltyCard(-1, store, note, validFrom, expiry, balance, balanceType, cardId, barcodeId, barcodeType, headerColor, 0, Utils.getUnixTime(), 100, 0);
+            return new LoyaltyCard(-1, store, note, validFrom, expiry, balance, balanceType, cardId, barcodeId, barcodeType, headerColor, 0, CommonUtils.getUnixTime(), 100, 0);
         } catch (NumberFormatException | UnsupportedEncodingException | ArrayIndexOutOfBoundsException ex) {
             throw new InvalidObjectException("Not a valid import URI");
         }

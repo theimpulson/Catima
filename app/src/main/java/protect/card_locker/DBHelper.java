@@ -24,6 +24,7 @@ import protect.card_locker.models.CatimaBarcode;
 import protect.card_locker.models.Group;
 import protect.card_locker.models.ImageLocationType;
 import protect.card_locker.models.LoyaltyCard;
+import protect.card_locker.utils.CommonUtils;
 
 public class DBHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "Catima.db";
@@ -339,8 +340,8 @@ public class DBHelper extends SQLiteOpenHelper {
         while (cardCursor.moveToNext()) {
             LoyaltyCard card = LoyaltyCard.toLoyaltyCard(cardCursor);
             for (ImageLocationType imageLocationType : ImageLocationType.values()) {
-                String name = Utils.getCardImageFileName(card.id, imageLocationType);
-                if (Utils.retrieveCardImageAsFile(context, name).exists()) {
+                String name = CommonUtils.getCardImageFileName(card.id, imageLocationType);
+                if (CommonUtils.retrieveCardImageAsFile(context, name).exists()) {
                     files.add(name);
                 }
             }
@@ -409,7 +410,7 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put(LoyaltyCardDbIds.BARCODE_TYPE, barcodeType != null ? barcodeType.name() : null);
         contentValues.put(LoyaltyCardDbIds.HEADER_COLOR, headerColor);
         contentValues.put(LoyaltyCardDbIds.STAR_STATUS, starStatus);
-        contentValues.put(LoyaltyCardDbIds.LAST_USED, lastUsed != null ? lastUsed : Utils.getUnixTime());
+        contentValues.put(LoyaltyCardDbIds.LAST_USED, lastUsed != null ? lastUsed : CommonUtils.getUnixTime());
         contentValues.put(LoyaltyCardDbIds.ARCHIVE_STATUS, archiveStatus);
         long id = database.insert(LoyaltyCardDbIds.TABLE, null, contentValues);
 
@@ -444,7 +445,7 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put(LoyaltyCardDbIds.BARCODE_TYPE, barcodeType != null ? barcodeType.name() : null);
         contentValues.put(LoyaltyCardDbIds.HEADER_COLOR, headerColor);
         contentValues.put(LoyaltyCardDbIds.STAR_STATUS, starStatus);
-        contentValues.put(LoyaltyCardDbIds.LAST_USED, lastUsed != null ? lastUsed : Utils.getUnixTime());
+        contentValues.put(LoyaltyCardDbIds.LAST_USED, lastUsed != null ? lastUsed : CommonUtils.getUnixTime());
         contentValues.put(LoyaltyCardDbIds.ARCHIVE_STATUS, archiveStatus);
         database.insert(LoyaltyCardDbIds.TABLE, null, contentValues);
 
@@ -478,7 +479,7 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put(LoyaltyCardDbIds.BARCODE_TYPE, barcodeType != null ? barcodeType.name() : null);
         contentValues.put(LoyaltyCardDbIds.HEADER_COLOR, headerColor);
         contentValues.put(LoyaltyCardDbIds.STAR_STATUS, starStatus);
-        contentValues.put(LoyaltyCardDbIds.LAST_USED, lastUsed != null ? lastUsed : Utils.getUnixTime());
+        contentValues.put(LoyaltyCardDbIds.LAST_USED, lastUsed != null ? lastUsed : CommonUtils.getUnixTime());
         contentValues.put(LoyaltyCardDbIds.ARCHIVE_STATUS, archiveStatus);
 
         int rowsUpdated = database.update(LoyaltyCardDbIds.TABLE, contentValues,
@@ -613,7 +614,7 @@ public class DBHelper extends SQLiteOpenHelper {
         // Also wipe card images associated with this card
         for (ImageLocationType imageLocationType : ImageLocationType.values()) {
             try {
-                Utils.saveCardImage(context, null, id, imageLocationType);
+                CommonUtils.saveCardImage(context, null, id, imageLocationType);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }

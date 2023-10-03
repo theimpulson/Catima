@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import protect.card_locker.utils.CommonUtils;
+
 public class AboutContent {
 
     public static final String TAG = "Catima";
@@ -58,7 +60,7 @@ public class AboutContent {
     public String getContributors() {
         String contributors;
         try {
-            contributors = "<br/>" + Utils.readTextFile(context, R.raw.contributors);
+            contributors = "<br/>" + CommonUtils.readTextFile(context, R.raw.contributors);
         }  catch (IOException ignored) {
             return "";
         }
@@ -68,18 +70,18 @@ public class AboutContent {
     public String getHistory() {
         String versionHistory;
         try {
-            versionHistory = Utils.readTextFile(context, R.raw.changelog)
+            versionHistory = CommonUtils.readTextFile(context, R.raw.changelog)
                     .replace("# Changelog\n\n", "");
         }  catch (IOException ignored) {
             return "";
         }
-        return Utils.linkify(Utils.basicMDToHTML(versionHistory))
+        return CommonUtils.linkify(CommonUtils.basicMDToHTML(versionHistory))
                 .replace("\n", "<br />");
     }
 
     public String getLicense() {
         try {
-            return Utils.readTextFile(context, R.raw.license);
+            return CommonUtils.readTextFile(context, R.raw.license);
         }  catch (IOException ignored) {
             return "";
         }
@@ -88,12 +90,12 @@ public class AboutContent {
     public String getPrivacy() {
         String privacyPolicy;
         try {
-            privacyPolicy = Utils.readTextFile(context, R.raw.privacy)
+            privacyPolicy = CommonUtils.readTextFile(context, R.raw.privacy)
                     .replace("# Privacy Policy\n", "");
         }  catch (IOException ignored) {
             return "";
         }
-        return Utils.linkify(Utils.basicMDToHTML(privacyPolicy))
+        return CommonUtils.linkify(CommonUtils.basicMDToHTML(privacyPolicy))
                 .replace("\n", "<br />");
     }
 

@@ -13,6 +13,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 
 import protect.card_locker.databinding.AboutActivityBinding;
+import protect.card_locker.utils.CommonUtils;
 
 public class AboutActivity extends CatimaAppCompatActivity {
 
@@ -45,7 +46,7 @@ public class AboutActivity extends CatimaAppCompatActivity {
         binding.rate.setTag("https://play.google.com/store/apps/details?id=me.hackerchick.catima");
         binding.donate.setTag("https://catima.app/contribute/#donating");
 
-        boolean installedFromGooglePlay = Utils.installedFromGooglePlay(this);
+        boolean installedFromGooglePlay = CommonUtils.installedFromGooglePlay(this);
         // Hide Google Play rate button if not on Google Play
         binding.rate.setVisibility(installedFromGooglePlay ? View.VISIBLE : View.GONE);
         // Hide donate button on Google Play (Google Play doesn't allow donation links)
@@ -121,7 +122,7 @@ public class AboutActivity extends CatimaAppCompatActivity {
         int dialogContentPadding = getResources().getDimensionPixelSize(R.dimen.alert_dialog_content_padding);
         TextView textView = new TextView(this);
         textView.setText(text);
-        Utils.makeTextViewLinksClickable(textView, text);
+        CommonUtils.makeTextViewLinksClickable(textView, text);
         ScrollView scrollView = new ScrollView(this);
         scrollView.addView(textView);
         scrollView.setPadding(dialogContentPadding, dialogContentPadding / 2, dialogContentPadding, 0);

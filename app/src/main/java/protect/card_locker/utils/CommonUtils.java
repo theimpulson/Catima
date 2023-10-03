@@ -1,4 +1,4 @@
-package protect.card_locker;
+package protect.card_locker.utils;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -70,13 +70,15 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import protect.card_locker.BarcodeSelectorActivity;
+import protect.card_locker.R;
 import protect.card_locker.models.BarcodeValues;
 import protect.card_locker.models.ImageLocationType;
 import protect.card_locker.models.LetterBitmap;
 import protect.card_locker.models.LoyaltyCard;
 import protect.card_locker.preferences.Settings;
 
-public class Utils {
+public class CommonUtils {
     private static final String TAG = "Catima";
 
     // Activity request codes
@@ -95,8 +97,8 @@ public class Utils {
 
     static final double LUMINANCE_MIDPOINT = 0.5;
 
-    static final int BITMAP_SIZE_SMALL = 512;
-    static final int BITMAP_SIZE_BIG = 2048;
+    public static final int BITMAP_SIZE_SMALL = 512;
+    public static final int BITMAP_SIZE_BIG = 2048;
 
     static public LetterBitmap generateIcon(Context context, LoyaltyCard loyaltyCard, boolean forShortcut) {
         return generateIcon(context, loyaltyCard.store, loyaltyCard.headerColor, forShortcut);
@@ -151,7 +153,7 @@ public class Utils {
             return new BarcodeValues(null, null);
         }
 
-        if (requestCode == Utils.BARCODE_IMPORT_FROM_IMAGE_FILE) {
+        if (requestCode == CommonUtils.BARCODE_IMPORT_FROM_IMAGE_FILE) {
             Log.i(TAG, "Received image file with possible barcode");
 
             Uri data = intent.getData();
@@ -184,10 +186,10 @@ public class Utils {
             return barcodeFromBitmap;
         }
 
-        if (requestCode == Utils.BARCODE_SCAN || requestCode == Utils.SELECT_BARCODE_REQUEST) {
-            if (requestCode == Utils.BARCODE_SCAN) {
+        if (requestCode == CommonUtils.BARCODE_SCAN || requestCode == CommonUtils.SELECT_BARCODE_REQUEST) {
+            if (requestCode == CommonUtils.BARCODE_SCAN) {
                 Log.i(TAG, "Received barcode information from camera");
-            } else if (requestCode == Utils.SELECT_BARCODE_REQUEST) {
+            } else if (requestCode == CommonUtils.SELECT_BARCODE_REQUEST) {
                 Log.i(TAG, "Received barcode information from typing it");
             }
 
@@ -221,7 +223,7 @@ public class Utils {
         // This function is vulnerable to OOM, so we try again with a smaller bitmap is we get OOM
         for (int i = 0; i < 10; i++) {
             try {
-                return Utils.getBarcodeFromBitmapReal(bitmap);
+                return CommonUtils.getBarcodeFromBitmapReal(bitmap);
             } catch (OutOfMemoryError e) {
                 Log.w(TAG, "Ran OOM in getBarcodeFromBitmap! Trying again with smaller picture! Retry " + i + " of 10.");
                 bitmap = Bitmap.createScaledBitmap(bitmap, (int) Math.round(0.75 * bitmap.getWidth()), (int) Math.round(0.75 * bitmap.getHeight()), false);
@@ -746,7 +748,7 @@ public class Utils {
             backgroundOrIcon.setImageBitmap(null);
             backgroundOrIcon.setBackgroundColor(headerColor);
             textWhenNoImage.setText(loyaltyCard.store);
-            textWhenNoImage.setTextColor(Utils.needsDarkForeground(headerColor) ? Color.BLACK : Color.WHITE);
+            textWhenNoImage.setTextColor(CommonUtils.needsDarkForeground(headerColor) ? Color.BLACK : Color.WHITE);
         }
     }
 

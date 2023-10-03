@@ -10,7 +10,7 @@ import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.preference.PreferenceManager;
 import protect.card_locker.R;
-import protect.card_locker.Utils;
+import protect.card_locker.utils.CommonUtils;
 
 public class Settings {
     private final Context mContext;
@@ -48,7 +48,7 @@ public class Settings {
             return null;
         }
 
-        return Utils.stringToLocale(value);
+        return CommonUtils.stringToLocale(value);
     }
 
     public int getTheme() {

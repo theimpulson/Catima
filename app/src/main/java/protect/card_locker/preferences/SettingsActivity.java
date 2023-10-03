@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 import protect.card_locker.CatimaAppCompatActivity;
 import protect.card_locker.MainActivity;
 import protect.card_locker.R;
-import protect.card_locker.Utils;
+import protect.card_locker.utils.CommonUtils;
 import protect.card_locker.databinding.SettingsActivityBinding;
 
 public class SettingsActivity extends CatimaAppCompatActivity {
@@ -146,7 +146,7 @@ public class SettingsActivity extends CatimaAppCompatActivity {
                 if (entry.length() == 0) {
                     entries.add(getResources().getString(R.string.settings_system_locale));
                 } else {
-                    Locale entryLocale = Utils.stringToLocale(entry.toString());
+                    Locale entryLocale = CommonUtils.stringToLocale(entry.toString());
                     entries.add(entryLocale.getDisplayName(entryLocale));
                 }
             }
@@ -165,10 +165,10 @@ public class SettingsActivity extends CatimaAppCompatActivity {
                     // Obtain all locales supported by the app.
                     List<Locale> appLocales = Arrays.stream(localePreference.getEntryValues())
                             .map(Objects::toString)
-                            .map(Utils::stringToLocale)
+                            .map(CommonUtils::stringToLocale)
                             .collect(Collectors.toList());
                     // Get the app locale that best matches the system one
-                    Locale bestMatchLocale = Utils.getBestMatchLocale(appLocales, sysLocale);
+                    Locale bestMatchLocale = CommonUtils.getBestMatchLocale(appLocales, sysLocale);
                     // Get its index in supported locales
                     int index = appLocales.indexOf(bestMatchLocale);
                     // Set preference value to entry value at that index
@@ -184,7 +184,7 @@ public class SettingsActivity extends CatimaAppCompatActivity {
                 }
                 String newLocale = (String) newValue;
                 // If newLocale is empty, that means "System" was selected
-                AppCompatDelegate.setApplicationLocales(newLocale.isEmpty() ? LocaleListCompat.getEmptyLocaleList() : LocaleListCompat.create(Utils.stringToLocale(newLocale)));
+                AppCompatDelegate.setApplicationLocales(newLocale.isEmpty() ? LocaleListCompat.getEmptyLocaleList() : LocaleListCompat.create(CommonUtils.stringToLocale(newLocale)));
                 return true;
             });
 

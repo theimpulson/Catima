@@ -20,13 +20,15 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.view.WindowInsetsControllerCompat;
 
+import protect.card_locker.utils.CommonUtils;
+
 public class UCropWrapper extends UCropActivity {
     public static final String UCROP_TOOLBAR_TYPEFACE_STYLE = "ucop_toolbar_typeface_style";
 
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        boolean darkMode = Utils.isDarkModeEnabled(this);
+        boolean darkMode = CommonUtils.isDarkModeEnabled(this);
         // setup status bar to look like the rest of the app
         if (Build.VERSION.SDK_INT >= 23) {
             View decorView = getWindow().getDecorView();
@@ -52,7 +54,7 @@ public class UCropWrapper extends UCropActivity {
                     if (check instanceof AppCompatImageView) {
                         AppCompatImageView controlsBackgroundImage = (AppCompatImageView) check;
                         // everything gathered and are as expected, now perform color patching
-                        Utils.patchColors(this);
+                        CommonUtils.patchColors(this);
                         int colorSurface = MaterialColors.getColor(this, com.google.android.material.R.attr.colorSurface, ContextCompat.getColor(this, R.color.md_theme_light_surface));
                         int colorOnSurface = MaterialColors.getColor(this, com.google.android.material.R.attr.colorOnSurface, ContextCompat.getColor(this, R.color.md_theme_light_onSurface));
 

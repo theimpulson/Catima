@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 
 import protect.card_locker.models.CatimaBarcode;
 import protect.card_locker.models.ImageLocationType;
+import protect.card_locker.utils.CommonUtils;
 
 public class TestHelpers {
     private static final String BARCODE_DATA = "428311627547";
@@ -31,7 +32,7 @@ public class TestHelpers {
 
             for (ImageLocationType imageLocationType : ImageLocationType.values()) {
                 try {
-                    Utils.saveCardImage(context.getApplicationContext(), null, cardID, imageLocationType);
+                    CommonUtils.saveCardImage(context.getApplicationContext(), null, cardID, imageLocationType);
                 } catch (FileNotFoundException ignored) {
                 }
             }

@@ -32,6 +32,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import protect.card_locker.databinding.LoyaltyCardLayoutBinding;
 import protect.card_locker.models.ImageLocationType;
 import protect.card_locker.models.LoyaltyCard;
+import protect.card_locker.utils.CommonUtils;
 
 public class LoyaltyCardCursorAdapter extends BaseCursorAdapter<LoyaltyCardCursorAdapter.LoyaltyCardListItemViewHolder> {
     private int mCurrentSelectedIndex = -1;
@@ -55,7 +56,7 @@ public class LoyaltyCardCursorAdapter extends BaseCursorAdapter<LoyaltyCardCurso
         mSelectedItems = new SparseBooleanArray();
         mAnimationItemsIndex = new SparseBooleanArray();
 
-        mDarkModeEnabled = Utils.isDarkModeEnabled(inputContext);
+        mDarkModeEnabled = CommonUtils.isDarkModeEnabled(inputContext);
 
         swapCursor(inputCursor);
     }
@@ -90,7 +91,7 @@ public class LoyaltyCardCursorAdapter extends BaseCursorAdapter<LoyaltyCardCurso
         inputHolder.mDivider.setVisibility(View.GONE);
 
         LoyaltyCard loyaltyCard = LoyaltyCard.toLoyaltyCard(inputCursor);
-        Bitmap icon = Utils.retrieveCardImage(mContext, loyaltyCard.id, ImageLocationType.icon);
+        Bitmap icon = CommonUtils.retrieveCardImage(mContext, loyaltyCard.id, ImageLocationType.icon);
 
         if (mLoyaltyCardListDisplayOptions.showingNameBelowThumbnail() && icon != null) {
             showDivider = true;
@@ -107,26 +108,26 @@ public class LoyaltyCardCursorAdapter extends BaseCursorAdapter<LoyaltyCardCurso
         }
 
         if (mLoyaltyCardListDisplayOptions.showingBalance() && !loyaltyCard.balance.equals(new BigDecimal("0"))) {
-            inputHolder.setExtraField(inputHolder.mBalanceField, Utils.formatBalance(mContext, loyaltyCard.balance, loyaltyCard.balanceType), null, showDivider);
+            inputHolder.setExtraField(inputHolder.mBalanceField, CommonUtils.formatBalance(mContext, loyaltyCard.balance, loyaltyCard.balanceType), null, showDivider);
         } else {
             inputHolder.setExtraField(inputHolder.mBalanceField, null, null, false);
         }
 
         if (mLoyaltyCardListDisplayOptions.showingValidity() && loyaltyCard.validFrom != null) {
-            inputHolder.setExtraField(inputHolder.mValidFromField, DateFormat.getDateInstance(DateFormat.LONG).format(loyaltyCard.validFrom), Utils.isNotYetValid(loyaltyCard.validFrom) ? Color.RED : null, showDivider);
+            inputHolder.setExtraField(inputHolder.mValidFromField, DateFormat.getDateInstance(DateFormat.LONG).format(loyaltyCard.validFrom), CommonUtils.isNotYetValid(loyaltyCard.validFrom) ? Color.RED : null, showDivider);
         } else {
             inputHolder.setExtraField(inputHolder.mValidFromField, null, null, false);
         }
 
         if (mLoyaltyCardListDisplayOptions.showingValidity() && loyaltyCard.expiry != null) {
-            inputHolder.setExtraField(inputHolder.mExpiryField, DateFormat.getDateInstance(DateFormat.LONG).format(loyaltyCard.expiry), Utils.hasExpired(loyaltyCard.expiry) ? Color.RED : null, showDivider);
+            inputHolder.setExtraField(inputHolder.mExpiryField, DateFormat.getDateInstance(DateFormat.LONG).format(loyaltyCard.expiry), CommonUtils.hasExpired(loyaltyCard.expiry) ? Color.RED : null, showDivider);
         } else {
             inputHolder.setExtraField(inputHolder.mExpiryField, null, null, false);
         }
 
         inputHolder.mCardIcon.setContentDescription(loyaltyCard.store);
-        Utils.setIconOrTextWithBackground(mContext, loyaltyCard, icon, inputHolder.mCardIcon, inputHolder.mCardText);
-        inputHolder.setIconBackgroundColor(Utils.getHeaderColor(mContext, loyaltyCard));
+        CommonUtils.setIconOrTextWithBackground(mContext, loyaltyCard, icon, inputHolder.mCardIcon, inputHolder.mCardText);
+        inputHolder.setIconBackgroundColor(CommonUtils.getHeaderColor(mContext, loyaltyCard));
 
         inputHolder.toggleCardStateIcon(loyaltyCard.starStatus != 0, loyaltyCard.archiveStatus != 0, itemSelected(inputCursor.getPosition()));
 
@@ -309,7 +310,7 @@ public class LoyaltyCardCursorAdapter extends BaseCursorAdapter<LoyaltyCardCurso
             mStarBorder.setImageDrawable(borderDrawable);
             mStarBackground.setImageDrawable(backgroundDrawable);
             */
-            boolean dark = Utils.needsDarkForeground(mIconBackgroundColor);
+            boolean dark = CommonUtils.needsDarkForeground(mIconBackgroundColor);
             if (colorByTheme) {
                 dark = !mDarkModeEnabled;
             }

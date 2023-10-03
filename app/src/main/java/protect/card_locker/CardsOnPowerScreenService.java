@@ -24,6 +24,7 @@ import androidx.annotation.RequiresApi;
 
 import protect.card_locker.models.ImageLocationType;
 import protect.card_locker.models.LoyaltyCard;
+import protect.card_locker.utils.CommonUtils;
 
 @RequiresApi(Build.VERSION_CODES.R)
 public class CardsOnPowerScreenService extends ControlsProviderService {
@@ -102,13 +103,13 @@ public class CardsOnPowerScreenService extends ControlsProviderService {
     }
 
     private Bitmap getIcon(Context context, LoyaltyCard loyaltyCard) {
-        Bitmap cardIcon = Utils.retrieveCardImage(context, loyaltyCard.id, ImageLocationType.icon);
+        Bitmap cardIcon = CommonUtils.retrieveCardImage(context, loyaltyCard.id, ImageLocationType.icon);
 
         if (cardIcon != null) {
             return cardIcon;
         }
 
-        return Utils.generateIcon(this, loyaltyCard.store, loyaltyCard.headerColor).getLetterTile();
+        return CommonUtils.generateIcon(this, loyaltyCard.store, loyaltyCard.headerColor).getLetterTile();
     }
 
     private Integer controlIdToCardId(String controlId) {

@@ -49,6 +49,8 @@ import protect.card_locker.databinding.CustomBarcodeScannerBinding;
 import protect.card_locker.databinding.ScanActivityBinding;
 import protect.card_locker.models.BarcodeValues;
 import protect.card_locker.models.SimpleTextWatcher;
+import protect.card_locker.utils.PermissionUtils;
+import protect.card_locker.utils.CommonUtils;
 
 /**
  * Custom Scannner Activity extending from Activity to display a custom layout form scanner view.
@@ -100,8 +102,8 @@ public class ScanActivity extends CatimaAppCompatActivity {
 
         extractIntentFields(getIntent());
 
-        manualAddLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> handleActivityResult(Utils.SELECT_BARCODE_REQUEST, result.getResultCode(), result.getData()));
-        photoPickerLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> handleActivityResult(Utils.BARCODE_IMPORT_FROM_IMAGE_FILE, result.getResultCode(), result.getData()));
+        manualAddLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> handleActivityResult(CommonUtils.SELECT_BARCODE_REQUEST, result.getResultCode(), result.getData()));
+        photoPickerLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> handleActivityResult(CommonUtils.BARCODE_IMPORT_FROM_IMAGE_FILE, result.getResultCode(), result.getData()));
         customBarcodeScannerBinding.fabOtherOptions.setOnClickListener(view -> {
             setScannerActive(false);
 
@@ -271,7 +273,7 @@ public class ScanActivity extends CatimaAppCompatActivity {
     private void handleActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
 
-        BarcodeValues barcodeValues = Utils.parseSetBarcodeActivityResult(requestCode, resultCode, intent, this);
+        BarcodeValues barcodeValues = CommonUtils.parseSetBarcodeActivityResult(requestCode, resultCode, intent, this);
 
         if (barcodeValues.isEmpty()) {
             setScannerActive(true);
