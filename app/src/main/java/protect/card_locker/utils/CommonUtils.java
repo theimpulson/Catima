@@ -70,7 +70,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import protect.card_locker.BarcodeSelectorActivity;
+import protect.card_locker.barcode.BarcodeSelectorActivity;
 import protect.card_locker.R;
 import protect.card_locker.models.BarcodeValues;
 import protect.card_locker.models.ImageLocationType;

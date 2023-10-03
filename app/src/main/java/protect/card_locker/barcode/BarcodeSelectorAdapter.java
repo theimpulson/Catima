@@ -1,4 +1,4 @@
-package protect.card_locker;
+package protect.card_locker.barcode;
 
 import android.content.Context;
 import android.util.Log;
@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import protect.card_locker.barcode.models.CatimaBarcodeWithValue;
 import protect.card_locker.async.TaskHandler;
 import protect.card_locker.databinding.BarcodeLayoutBinding;
 import protect.card_locker.models.CatimaBarcode;

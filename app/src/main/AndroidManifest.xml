@@ -104,7 +104,7 @@
             android:label="@string/scanCardBarcode"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".BarcodeSelectorActivity"
+            android:name=".barcode.BarcodeSelectorActivity"
             android:label="@string/selectBarcodeTitle"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />

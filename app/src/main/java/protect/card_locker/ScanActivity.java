@@ -1,7 +1,7 @@
 package protect.card_locker;
 
-import static protect.card_locker.BarcodeSelectorActivity.BARCODE_CONTENTS;
-import static protect.card_locker.BarcodeSelectorActivity.BARCODE_FORMAT;
+import static protect.card_locker.barcode.BarcodeSelectorActivity.BARCODE_CONTENTS;
+import static protect.card_locker.barcode.BarcodeSelectorActivity.BARCODE_FORMAT;
 
 import android.Manifest;
 import android.app.Activity;
@@ -45,6 +45,7 @@ import com.journeyapps.barcodescanner.DecoratedBarcodeView;
 
 import java.util.List;
 
+import protect.card_locker.barcode.BarcodeSelectorActivity;
 import protect.card_locker.databinding.CustomBarcodeScannerBinding;
 import protect.card_locker.databinding.ScanActivityBinding;
 import protect.card_locker.models.BarcodeValues;

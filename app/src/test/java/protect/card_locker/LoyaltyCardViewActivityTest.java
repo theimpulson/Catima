@@ -69,6 +69,7 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.robolectric.Shadows.shadowOf;
 
+import protect.card_locker.barcode.BarcodeSelectorActivity;
 import protect.card_locker.models.CatimaBarcode;
 import protect.card_locker.models.LoyaltyCard;
 

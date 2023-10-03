@@ -1,4 +1,4 @@
-package protect.card_locker;
+package protect.card_locker.barcode.models;
 
 import protect.card_locker.models.CatimaBarcode;
 
